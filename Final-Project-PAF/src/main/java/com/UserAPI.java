@@ -15,7 +15,8 @@ import javax.servlet.http.HttpSession;
 public class UserAPI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	 UserAPI userObj = new UserAPI();
+	//user object create
+	 User userObj = new User();
       
    /**
     * @see HttpServlet#HttpServlet()
@@ -28,6 +29,7 @@ public class UserAPI extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+ //get method
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -36,6 +38,7 @@ public class UserAPI extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	//post method
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 			{ 
 				 HttpSession session = request.getSession(); 
@@ -58,6 +61,7 @@ public class UserAPI extends HttpServlet {
 			 	response.getWriter().write(output); 
 			}
 	
+	//delete method
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 			{ 
 				 HttpSession session = request.getSession(); 

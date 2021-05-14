@@ -47,15 +47,18 @@ public String readProduct()
 		 String Product_id = Integer.toString(rs.getInt("Product_id")); 
 		 String Product_code = rs.getString("Product_code"); 
 		 String Product_name = rs.getString("Product_name");
-		 String Price = Double.toString(rs.getDouble("Price")); 
+		 String Price =  rs.getString("Price");
 		 String Description = rs.getString("Description"); 
 	 // Add into the html table
-		 output += "<tr><td><input id='hidProduct_idupdate' name='hidProduct_idupdate' type='hidden' value='" + Product_id+ "'>" + Product_code + "</td>"; 
+		 output += "<tr><td><input id='hidProduct_idupdate' name='hidProduct_idupdate' type='hidden' value='" + Product_id
+				 + "'>" + Product_code + "</td>"; 
 		 output += "<td>" + Product_name + "</td>"; 
 		 output += "<td>" + Price + "</td>"; 
 		 output += "<td>" + Description + "</td>"; 
 	//buttons
-	 	output += "<td><input name='btnUpdate'type='button' value='Update' class='btnUpdate btn btn-secondary'></td>"+ "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-Product_id='"+ Product_id+ "'>" + "</td></tr>";  
+		 output += "<td><input name='btnUpdate' type='button' value='Update' "+"class='btnUpdate btn btn-secondary' data-pid='" + Product_id + "'></td>"
+
+			 + "<td><input name='btnRemove' type='button' value='Remove'class='btnRemove btn btn-danger' data-pid='" + Product_id + "'>" +"</td>"; 
 	 } 
 	 con.close(); 
 	 // Complete the html table
@@ -70,7 +73,7 @@ public String readProduct()
 	 } 
 	
 //insert items
-public String insertProduct(String code, String name,String price, String desc) 
+public String insertProduct(String Product_code, String Product_name,String Price, String Description) 
 	 { 
 	 String output = ""; 
 	 try
@@ -81,14 +84,15 @@ public String insertProduct(String code, String name,String price, String desc)
 	 return "Error while connecting to the database for inserting."; 
 	 } 
 	 // create a prepared statement
-	 String query = " insert into products('Product_id','Product_code','Product_name','Price','Description')"+ " values (?, ?, ?, ?, ?)";
+	 String query = " INSERT into products(`Product_id`,`Product_code`,`Product_name`,`Price`,`Description`)"
+	 + " values (?, ?, ?, ?, ?)";
 	PreparedStatement preparedStmt = con.prepareStatement(query); 
 		 // binding values
 	preparedStmt.setInt(1, 0); 
-	preparedStmt.setString(2, code); 
-	preparedStmt.setString(3, name); 
-    preparedStmt.setDouble(4, Double.parseDouble(price)); 
-	preparedStmt.setString(5, desc); 
+	preparedStmt.setString(2, Product_code); 
+	preparedStmt.setString(3, Product_name); 
+	preparedStmt.setString(4, Price);
+	preparedStmt.setString(5, Description); 
 		 // execute the statement
 	preparedStmt.execute(); 
 	con.close(); 
@@ -105,7 +109,7 @@ public String insertProduct(String code, String name,String price, String desc)
 
 
 //update items
-public String updateProduct(String ID, String code, String name,String price, String desc) 
+public String updateProduct(String Product_id, String Product_code, String Product_name,String Price, String Description) 
 	{ 
 		 String output = ""; 
 	try
@@ -116,14 +120,14 @@ public String updateProduct(String ID, String code, String name,String price, St
 		 return "Error while connecting to the database for updating."; 
 	 } 
 		 // create a prepared statement
-	String query = "UPDATE products SET Product_code=?,Product_id=?,Price=?,Description=? WHERE Product_id=?"; 
+	String query = "UPDATE products SET Product_code=?,Product_name=?,Price=?,Description=? WHERE Product_id=?"; 
 	PreparedStatement preparedStmt = con.prepareStatement(query); 
 		 // binding values
-		 preparedStmt.setString(1, code); 
-		 preparedStmt.setString(2, name); 
-		 preparedStmt.setDouble(3, Double.parseDouble(price)); 
-		 preparedStmt.setString(4, desc); 
-		 preparedStmt.setInt(5, Integer.parseInt(ID));
+		 preparedStmt.setString(1, Product_code); 
+		 preparedStmt.setString(2, Product_name); 
+		 preparedStmt.setString(3, Price); 
+		 preparedStmt.setString(4, Description); 
+		 preparedStmt.setInt(5, Integer.parseInt(Product_id));
 		// execute the statement
 		 preparedStmt.execute(); 
 		 con.close(); 
@@ -140,7 +144,7 @@ public String updateProduct(String ID, String code, String name,String price, St
 
 
 //delete items
-public String deleteProduct(String product_id) 
+public String deleteProduct (String product_id) 
 	{ 
 		 String output = ""; 
 	try
@@ -151,7 +155,7 @@ public String deleteProduct(String product_id)
 		 return "Error while connectingto the database for deleting."; 
 	} 
 		 // create a prepared statement
-	String query = "delete from products where Product_id=?"; 
+	String query = "DELETE from products where Product_id= ?"; 
 	PreparedStatement preparedStmt = con.prepareStatement(query); 
 		 // binding values
 	preparedStmt.setInt(1, Integer.parseInt(product_id)); 

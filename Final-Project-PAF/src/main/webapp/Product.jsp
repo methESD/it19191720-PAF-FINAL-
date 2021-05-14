@@ -5,39 +5,40 @@ pageEncoding="ISO-8859-1"%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>GadgetBadget Online Platform</title>
+<title>Product Management</title>
 <link rel="stylesheet" href="Views/bootstrap.min.css">
 <script src="Components/jquery-3.2.1.min.js"></script>
 <script src="Components/product.js"></script>
 </head>
 <body>
 <div class="container"><div class="row"><div class="col-6">
-	<h1>Product Insert</h1>
+	<h1>Product Management</h1>
 		
 		<form id="formProduct" name="formProduct">
 			
-		 			 Product ID:
+		 		Product code:
 		 		<input id="Product_code" name="Product_code" type="text"class="form-control form-control-sm">
-		 		<br> Product Name:
+		 		<br> Product name:
 		 		<input id="Product_name" name="Product_name" type="text"class="form-control form-control-sm">
-		 		<br> Price:
+		 		<br> Product price:
 		 		<input id="Price" name="Price" type="text"class="form-control form-control-sm">
-		 		<br> Description:
+		 		<br> Product description:
 		 		<input id="Description" name="Description" type="text"class="form-control form-control-sm">
 		 		<br>
+		 		
 				<input id="btnSave" name="btnSave" type="button" value="Save"class="btn btn-primary">
+				
 		 		<input type="hidden" id="hidProduct_idSave"name="hidProduct_idSave" value="">
 				
 		</form>
 		
 		<div id="alertSuccess" class="alert alert-success"></div>
 		<div id="alertError" class="alert alert-danger"></div>
-		
-	<br>
-			<div id="divProductGrid">
+	
+			<div id="divItemsGrid">
 				 <%
-				 	Product productObj = new Product(); 
-				 	out.print(productObj.readProduct()); 
+				 	Product itemObj = new Product(); 
+				 	out.print(itemObj.readProduct()); 
 				 %>		
 			</div>
 		</div>	

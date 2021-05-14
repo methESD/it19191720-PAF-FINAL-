@@ -2,14 +2,17 @@
  * 
  */
 
-//btn login 
+//btn login
+ 
 $(document).on("click", "#btnLogin", function(event)
 { 
 // Clear alerts---------------------
+
  $("#alertError").text(""); 
  $("#alertError").hide(); 
  
 // Form validation-------------------
+
 var status = validateLoginForm(); 
 if (status != true) 
  { 
@@ -17,7 +20,10 @@ if (status != true)
  $("#alertError").show(); 
  return; 
  } 
+ 
+ 
 // If valid------------------------
+
  $.ajax( 
  { 
  url : "LoginAPI", 
@@ -31,7 +37,9 @@ if (status != true)
  }); 
 }); 
 
+
 //login function
+
 function onLoginComplete(response, status)
 { 
 	if (status == "success") 
@@ -65,7 +73,9 @@ function onLoginComplete(response, status)
 	 $("#formProduct")[0].reset(); 
 }
 
+
 //validate login
+
 function validateLoginForm()
 { 
 	// USERNAME
@@ -97,7 +107,9 @@ $(document).on("click", "#btnLogout", function(event)
 	 }); 
 	}); 
 	
-//logout function	
+	
+//logout function
+	
 function onLogoutComplete(response, status) 
 	{ 
 	if (status == "success") 
